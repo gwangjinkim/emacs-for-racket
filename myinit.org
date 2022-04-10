@@ -1,0 +1,121 @@
+* Racket
+
+[[https://www.linw1995.com/en/blog/Write-Racket-With-Emacs/][source]]
+
+`C-c C-,` https://emacs.stackexchange.com/questions/40571/how-to-set-a-short-cut-for-begin-src-end-src
+M-x org-inster-structure-template
+
+`C-c '`
+M-x org-edit-src-code
+
+abort
+`C-c C-k`
+
+run code block
+`C-c C-c`
+
+org-babel
+https://orgmode.org/worg/org-contrib/babel/intro.html
+
+https://qua.name/mrb/an-org-babel-based-emacs-configuration
+
+** add orgbabel choice
+
+#+begin_src elisp
+  (add-to-list 'org-structure-template-alist '("R" . "src R"))
+  (add-to-list 'org-structure-template-alist '("r" . "src racket"))
+
+  ;; for `<s TAB` you have to do:
+  (require 'org-tempo)
+#+end_src
+
+#+RESULTS:
+: org-tempo
+
+
+
+
+
+** Add Racket mode
+
+#+begin_src elisp
+  (use-package racket-mode
+    :straight t
+    :hook (racket-mode . racket-xp-mode))
+#+end_src
+
+#+RESULTS:
+
+see default key-binding maps from:
+- racket-mode-map
+- racket-xp-mode-map
+- racket-xp-control-c-hash-keymap
+
+
+| run                                              | C-c C-c   | racket-run-module-at-point   | pops up new repl winodw             |
+| go to repl window                                | C-x o     | other-window                 |                                     |
+| switch focused window to repl (launch)           | C-c C-z   | racket-repl                  | toggles focus to repl               |
+| run repl and change focus to repl                | <f5>      |                              |                                     |
+| describe function (move cursor on function name) | C-c C-.   | racket-xp-describe           |                                     |
+| (in the repl)                                    | C-c C-.   | racket-repl-describe         |                                     |
+| jump to function source                          | M-.       | racket-xp-visit-definition   |                                     |
+| (in the repl)                                    | M-.       | racket-repl-visit-definition |                                     |
+| jump back from function source                   | M-,       | racket-unvisit               |                                     |
+| find next reference of function                  | C-c #n    | racket-xp-next-use           |                                     |
+|                                                  |           |                              |                                     |
+| test                                             | C-c C-t   | racket-test                  | runs submodule test of current file |
+|                                                  | <C-f5>    |                              |                                     |
+| jump to location of failing test                 | C-x `     |                              |                                     |
+|                                                  |           |                              |                                     |
+| add breakpoint on function under cursor and run  | C-u C-M-x |                              |                                     |
+| open racket profile window                       | C-c C-o   | racket-run-module-at-point   | shows profiling result              |
+|                                                  |           | racket-profile-mode          |                                     |
+| refresh profiling result                         | g         |                              |                                     |
+|                                                  |           |                              |                                     |
+
+
+
+
+
+
+** Enhance Programming Experience (Optional)
+
+#+begin_src elisp
+  (use-package company
+    :straight t
+    :config
+    (setq company-minimum-prefix-length 2)
+    (setq company-idle-delay 0.1)
+    (setq company-tooltip-align-annotations t)
+    :hook
+    ((racket-mode . company-mode)
+     (racket-repl-mode .company-mode)))
+#+end_src
+
+** Rainbow Delimiters
+
+Highlighting delimiters (parentheses, brackets, braces)
+
+#+begin_src elisp
+
+  (use-package rainbow-delimiters
+    :straight t
+    :hook
+    ((racket-mode . rainbow-delimiters-mode)
+     (racket-repl-mode . rainbow-delimiters-mode)))
+#+end_src
+
+** paredit-mode
+
+Structured edigiting of S-expression data.
+
+#+begin_src elisp
+  (use-package paredit
+    :straight t
+    :hook
+    ((racket-mode . paredit-mode)
+     (racket-repl-mode . paredit-mode)))
+#+end_src
+
+
+
