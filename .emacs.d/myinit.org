@@ -2,17 +2,19 @@
 
 [[https://www.linw1995.com/en/blog/Write-Racket-With-Emacs/][source]]
 
-`C-c C-,` https://emacs.stackexchange.com/questions/40571/how-to-set-a-short-cut-for-begin-src-end-src
-M-x org-inster-structure-template
+#+BEGIN_SRC elisp
+  ;; `C-c C-,` https://emacs.stackexchange.com/questions/40571/how-to-set-a-short-cut-for-begin-src-end-src
+  ;; M-x org-inster-structure-template
 
-`C-c '`
-M-x org-edit-src-code
+  ;; `C-c '`
+  ;; M-x org-edit-src-code
 
-abort
-`C-c C-k`
+  ;; abort
+  ;; `C-c C-k`
 
-run code block
-`C-c C-c`
+  ;; run code block
+  ;; `C-c C-c`
+#+END_SRC
 
 org-babel
 https://orgmode.org/worg/org-contrib/babel/intro.html
@@ -70,7 +72,10 @@ Better choice of files
 #+begin_src elisp
   (use-package racket-mode
     :ensure t
+    ;; :config
+    ;; (setq racket-program "/home/josephus/miniconda3/envs/racket/bin/racket")
     :hook (racket-mode . racket-xp-mode))
+    
 #+end_src
 
 #+RESULTS:
@@ -80,7 +85,6 @@ see default key-binding maps from:
 - racket-mode-map
 - racket-xp-mode-map
 - racket-xp-control-c-hash-keymap
-
 
 | run                                              | C-c C-c   | racket-run-module-at-point   | pops up new repl winodw             |
 | go to repl window                                | C-x o     | other-window                 |                                     |
@@ -132,7 +136,7 @@ Highlighting delimiters (parentheses, brackets, braces)
 #+begin_src elisp
 
   (use-package rainbow-delimiters
-    ;; :straight t
+    ;ensure t
     :hook
     ((racket-mode . rainbow-delimiters-mode)
      (racket-repl-mode . rainbow-delimiters-mode)))
