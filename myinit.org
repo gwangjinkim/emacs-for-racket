@@ -19,6 +19,13 @@ https://orgmode.org/worg/org-contrib/babel/intro.html
 
 https://qua.name/mrb/an-org-babel-based-emacs-configuration
 
+
+Perhaps a more secure source is:
+https://www.racket-mode.com/#Configure-Emacs-to-use-MELPA
+
+
+
+
 ** add orgbabel choice
 
 #+begin_src elisp
@@ -40,11 +47,12 @@ https://qua.name/mrb/an-org-babel-based-emacs-configuration
 
 #+begin_src elisp
   (use-package racket-mode
-    :straight t
+    ;; :straight t
     :hook (racket-mode . racket-xp-mode))
 #+end_src
 
 #+RESULTS:
+| racket-xp-mode |
 
 see default key-binding maps from:
 - racket-mode-map
@@ -82,7 +90,7 @@ see default key-binding maps from:
 
 #+begin_src elisp
   (use-package company
-    :straight t
+    ;; :straight t
     :config
     (setq company-minimum-prefix-length 2)
     (setq company-idle-delay 0.1)
@@ -92,6 +100,9 @@ see default key-binding maps from:
      (racket-repl-mode .company-mode)))
 #+end_src
 
+#+RESULTS:
+| company |
+
 ** Rainbow Delimiters
 
 Highlighting delimiters (parentheses, brackets, braces)
@@ -99,11 +110,14 @@ Highlighting delimiters (parentheses, brackets, braces)
 #+begin_src elisp
 
   (use-package rainbow-delimiters
-    :straight t
+    ;; :straight t
     :hook
     ((racket-mode . rainbow-delimiters-mode)
      (racket-repl-mode . rainbow-delimiters-mode)))
 #+end_src
+
+#+RESULTS:
+| rainbow-delimiters-mode | paredit-mode |
 
 ** paredit-mode
 
@@ -111,11 +125,14 @@ Structured edigiting of S-expression data.
 
 #+begin_src elisp
   (use-package paredit
-    :straight t
+    ;; :straight t
     :hook
     ((racket-mode . paredit-mode)
      (racket-repl-mode . paredit-mode)))
 #+end_src
+
+#+RESULTS:
+| paredit-mode |
 
 
 
