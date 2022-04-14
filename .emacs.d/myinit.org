@@ -162,3 +162,11 @@ Structured edigiting of S-expression data.
 
 
 
+* Correct `$HOME`
+
+#+begin_src elisp
+;; put back $HOME to $ORIG_HOME
+;; in ~/.bashrc 
+;; alias rktemacs="conda activate emacs && env ORIG_HOME="$HOME" HOME=$HOME/emacs/emacs-for-racket emacs &"
+(setenv "HOME" (getenv "ORIG_HOME"))
+#+end_src
