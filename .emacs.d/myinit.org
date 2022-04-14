@@ -72,10 +72,10 @@ Better choice of files
 #+begin_src elisp
   (use-package racket-mode
     :ensure t
-    ;; :config
-    ;; (setq racket-program "/home/josephus/miniconda3/envs/racket/bin/racket")
-    :hook (racket-mode . racket-xp-mode))
-    
+    :hook (racket-mode . racket-xp-mode)
+    :config
+  (setq racket-program (executable-find "racket")))
+
 #+end_src
 
 #+RESULTS:
